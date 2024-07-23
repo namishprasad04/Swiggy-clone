@@ -128,11 +128,6 @@ export default function Header() {
               <div className="flex justify-center items-center gap-2 mr-5">
                 <IoIosSearch size={20} className="mt-1" />
                 <h1 className="font-semibold text-xl">search</h1>
-                {totalQuantity > 0 && (
-                  <sup className="bg-[#60b246] text-white rounded-full px-1 text-xs">
-                    {totalQuantity}
-                  </sup>
-                )}
               </div>
             </Link>
             <Link to="/cart">
