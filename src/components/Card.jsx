@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 
-export default function Card({ restaurant, slide,width }) {
-  const { image, offer, title, rating, minTime, maxTime,name,place} = restaurant;
+
+export default function Card({ restaurant, slide, width }) {
+  const { image, offer, title, rating, minTime, maxTime, name, place } =
+    restaurant;
   return (
     <div
       className={`${width} shrink-0 mb-5 duration-500`}
@@ -11,14 +13,19 @@ export default function Card({ restaurant, slide,width }) {
       }}
     >
       <div className="group h-[182px] mx-auto rounded-[15px] overflow-hidden relative ">
-        <img className=" group-hover:scale-125 duration-500 object-cover w-full h-full" src={image} alt="" />
+        <img
+          className=" group-hover:scale-125 duration-500 object-cover w-full h-full"
+          src={image}
+          alt=""
+        />
         <div className="image-overlay absolute top-0 w-full h-full flex items-end p-2 text-[18px] md:text-[25px] font-bold text-white tracking-tighter">
           {offer}
         </div>
       </div>
       <div className=" md:text-lg font-bold mt-3 ml-3">{title}</div>
       <div className="ml-3 flex items-center">
-        <StarRating className="inline mr-[3px]" />{rating}
+        <StarRating className="inline mr-[3px]" />
+        {rating}
         <li className=" inline ml-1 font-bold">
           • {minTime}-{maxTime} mins
         </li>

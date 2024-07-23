@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <>
       <div className="w-full bg-[#f0f0f5] h-[104px] p-3 overflow-hidden">
-        <div className="max-w-[1000px] flex flex-row justify-around items-center h-full mx-auto">
+        <div className="max-w-[900px] flex flex-row justify-around items-center h-full mx-auto">
           <h1 className="text-sm md:text-2xl md:w-[410px] font-bold text-[#02060cbf]">
             For better experience,download the Swiggy app now
           </h1>
@@ -23,7 +23,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className=" bg-[#02060c] h-[800px] lg:h-[500px] w-screen overflow-hidden">
+      <div className=" bg-[#02060c] h-[800px] lg:h-[500px] overflow-hidden">
         <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-12 h-full w-full text-white">
           <div className="mt-[48px] p-5 md:p-0">
             <div className="flex md:gap-3 text-white">

@@ -8,3 +8,7 @@
 .image-overlay{
     background-image: linear-gradient(to bottom,rgba(255,255,255,0) 50%, rgba(0,0,0,1));
 }
+.background {
+    background: linear-gradient(rgb(255, 255, 255) -6.71%, rgb(235, 235, 242) 56.19%, rgb(223, 223, 231) 106.56%);
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 8px 16px 0px;
+}

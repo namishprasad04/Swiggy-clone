@@ -5,33 +5,53 @@ import { FaRegUser } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
 import { IoHelpBuoyOutline } from "react-icons/io5";
 import { RxCaretDown } from "react-icons/rx";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+
 export default function Header() {
+  const { cart } = useCart();
+  const totalQuantity = Object.values(cart).reduce(
+    (total, restaurant) =>
+      total +
+      Object.values(restaurant.items).reduce(
+        (restaurantTotal, item) => restaurantTotal + item.quantity,
+        0
+      ),
+    0
+  );
+
   const navData = [
     {
       id: 1,
       icon: <IoIosSearch size={20} />,
       title: "Search",
+      navigate: "/search",
     },
     {
       id: 2,
       icon: <CiDiscount1 size={20} />,
       title: "Offers",
       sup: "New",
+      navigate: "/offers",
     },
     {
       id: 3,
-      icon: <IoHelpBuoyOutline size={20}/>,
+      icon: <IoHelpBuoyOutline size={20} />,
       title: "Help",
+      navigate: "/help",
     },
     {
       id: 4,
-      icon: <FaRegUser size={20}/>,
+      icon: <FaRegUser size={20} />,
       title: "Sign In",
+      navigate: "/sign-in",
     },
     {
       id: 5,
-      icon: <BsCartCheck  size={20}/>,
+      icon: <BsCartCheck size={20} />,
       title: "Cart",
+      sup: totalQuantity > 0 ? totalQuantity : null,
+      navigate: "/cart",
     },
   ];
   const [toggle, setToggle] = useState(false);
@@ -82,35 +102,53 @@ export default function Header() {
         </div>
       </div>
       <header className="p-[15px] shadow-xl text-[#686b78] sticky top-0 bg-white z-40">
-        <div className="max-w-[1200px] mx-auto flex items-center">
-          <div className="w-[50px] md:w-[100px]">
-            <img
-              src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png"
-              className="w-full"
-              alt=""
-            />
+        <div className="max-w-[1200px] mx-auto flex gap-1 items-center">
+          <div className="w-[80px]">
+            <Link to="/">
+              <img
+                src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png"
+                className="w-full"
+                alt=""
+              />
+            </Link>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="text-sm lg:text-lg font-bold border-b-[2px] xl:border-b-[3px] border-black">
-              Sri Satya Complex
+          <div className="hidden md:flex items-center gap-1">
+            <span className="text-sm lg:text-md font-bold mr-2 border-b-[2px] xl:border-b-[2px] border-black">
+              Other
             </span>
-            Visakhapatnam, India
+            Visakhapatnam, Andhra Pradesh, India
             <RxCaretDown
-              fontSize={25}
+              fontSize={27}
               className="inline text-[#fc8019] cursor-pointer"
               onClick={showSideMenu}
             />
           </div>
+          <div className="w-full flex md:hidden justify-end">
+            <Link to="/cart">
+              <div className="flex justify-center items-center gap-2 mr-5">
+                <BsCartCheck size={20} />
+                <h1 className="font-semibold text-xl">Cart</h1>
+                {totalQuantity > 0 && (
+                  <sup className="bg-[#60b246] text-white rounded-full px-1 text-xs">
+                    {totalQuantity}
+                  </sup>
+                )}
+              </div>
+            </Link>
+          </div>
           <nav className="hidden lg:flex list-none gap-5 xl:gap-10 ml-auto text-[9px] lg:text-[18px] font-semibold">
-            {navData.map(({ id, icon, title, sup }) => (
-              <li
-                key={id}
-                className="flex items-center gap-2 cursor-pointer hover:text-[#fc8019]"
-              >
-                {icon}
-                {title}
-                <sup>{sup}</sup>
-              </li>
+            {navData.map(({ id, icon, title, sup, navigate }) => (
+              <Link key={id} to={`${navigate}`}>
+                <li className="flex items-center gap-2 cursor-pointer hover:text-[#fc8019]">
+                  {icon}
+                  {title}
+                  {sup && (
+                    <sup className="bg-[#60b246] text-white rounded-full px-1 text-xs">
+                      {sup}
+                    </sup>
+                  )}
+                </li>
+              </Link>
             ))}
           </nav>
         </div>
